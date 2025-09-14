@@ -3,10 +3,26 @@ poner debajo del main "type": "module" y ya lo podemos hacer así. */
 import express from 'express';
 import dotenv from "dotenv";
 import rutas from './routers/index.js';
+import mongoose from 'mongoose';
 
-// Esto era para poder usar las variables de entorno, y usamos la variable PORT.
+// Esto era para poder usar las variables de entorno, y usamos la variable PORT y URI_DB (nueva, es para la BBDD).
 dotenv.config();
 const PORT = process.env.PORT;
+const URI_BD = process.env.URI_DB;
+
+/* Hacemos la conexión a la base de datos. */
+mongoose.connect(URI_BD); // La conecto con la variable de entorno.
+const db = mongoose.connection;
+
+/* Ponemos esto en caso de un error en la conexión. */
+db.on('error', () => {
+    console.error('No podemos conectar con la base de datos'); 
+})
+
+/* Ponemos esto en caso de éxito en la conexión */
+db.once('open', () => {
+    console.log('Conectado con la base de datos');
+});
 
 const app = express(); // Hago esto para poder usar Express.
 app.use(express.json()); // Esto era para que Express pueda leer los json.
