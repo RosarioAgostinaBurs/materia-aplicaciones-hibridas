@@ -62,7 +62,7 @@ const getUser = async (req, res) => {
 
 const postUser = async (req, res) => {
     try {
-        const {nombre, email, contrasena} = req.body;
+        const {nombre, email, contrasena, userId} = req.body;
         if(!nombre || !email || !contrasena){
             res.status(400).json({mensaje: 'Faltan campos'});
             return;
@@ -74,6 +74,7 @@ const postUser = async (req, res) => {
             res.status(400).json({mensaje: 'El email ya esta registrado'});
             return;
         }
+        console.log('El usuario actualizado es', userId);
 
         /* Indico en el parámetro que campo es el que quiero hashear y le paso el salt */
         const hash = await bcrypt.hash(contrasena, salt);
@@ -82,7 +83,7 @@ const postUser = async (req, res) => {
         const user = new UserModel({nombre, email, contrasena:hash});
         const data = await user.save();
 
-        res.status(201).json({mensaje: 'Usuario cargado', data});
+        res.status(201).json({mensaje: 'Usuario cargado', data:{id: data._id, nombre: data.nombre}});
 
     } catch (error) {
         console.error(error);
