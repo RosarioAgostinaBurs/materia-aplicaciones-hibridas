@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Bebidas y Tragos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <main class="container p-5">
+        <div class="row">
+            <div class="col-7 mx-auto text-center">
+                <h1 class="py-4">Bienvenido a la API de Bebidas y Tragos 🍹</h1>
+                <p>Acá podés crear, mirar, actualizar o eliminar información de tu lista de tragos y tus bebidas favoritas, como también usuarios.
+                Perfecta para proyectos de práctica, apps de coctelería o cualquier sistema donde quieras organizar recetas y catálogos de bebidas… ¡y de paso lucirte como un bartender! 🎉</p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-10 mx-auto">
+                <h2>Rutas de usuario</h2>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <span class="badge text-bg-info">GET</span>
+                        <a href="/api/users" target="_blank">/api/users</a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-info">GET BY ID</span>
+                        <a href="/api/users/68cd8af9bc888814256c141d" target="_blank">/api/users/:id</a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-success">POST</span>
+                        <a href="/api/users" target="_blank">/api/users</a>
+                        <pre>
+                            {
+                                "nombre": "String",
+                                "email": "String, unique",
+                                "contrasena": "String"
+                            }
+                        </pre>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-warning">PUT</span>
+                        <a href="/api/users" target="_blank">/api/users/:id</a>
+                        <pre>
+                            {
+                                "nombre": "String",
+                                "contrasena": "String"
+                            }
+                        </pre>
+                    </li>
+                </ul>
+
+                <h2>Rutas de bebidas</h2>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <span class="badge text-bg-info">GET</span>
+                        <a href="/api/bebidas" target="_blank">/api/bebidas</a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-info">GET BY ID</span>
+                        <a href="/api/bebidas/68d43c9684d08e32469193ec" target="_blank">/api/bebidas/:id</a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-success">POST</span>
+                        <a href="/api/bebidas" target="_blank">/api/bebidas</a>
+                        <pre>
+                            {
+                                "nombre": "String",
+                                "marca": "String",
+                                "origen": "String",
+                                "tipo": "String",
+                                "graduacion": Number, min: 0, max: 100
+                            }
+                        </pre>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-warning">PUT</span>
+                        <a href="/api/bebidas" target="_blank">/api/bebidas/:id</a>
+                        <pre>
+                            {
+                                "origen": "String",
+                                "graduacion": Number, min: 0, max: 100
+                            }
+                        </pre>
+                    </li>
+                </ul>
+
+                <h2>Rutas de tragos</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge text-bg-info">GET</span>
+                        <a href="/api/tragos" target="_blank">/api/tragos</a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-info">GET BY ID</span>
+                        <a href="/api/tragos/68d448f01d98f5eab212ce5b" target="_blank">/api/tragos/:id</a>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-success">POST</span>
+                        <a href="/api/tragos" target="_blank">/api/tragos</a>
+                        <pre>
+                            {
+                                "nombre": "String",
+                                "sabor": "String",
+                                "preparacion": "String" maxLength: 100,
+                                "ingredientes": [String]
+                            }
+                        </pre>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge text-bg-warning">PUT</span>
+                        <a href="/api/tragos" target="_blank">/api/tragos/:id</a>
+                        <pre>
+                            {
+                                "sabor": "String",
+                                "preparacion": "String" maxLength: 100,
+                                "ingredientes": [String]
+                            }
+                        </pre>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>Nombre y Apellido:</strong> Rosario Agostina Burs</p>
+        <p><strong>Materia:</strong> Aplicaciones Híbridas</p>
+        <p><strong>Docente:</strong> Jonathan Emanuel Cruz</p>
+        <p><strong>Comisión:</strong> DWN4AV</p>
+  </footer>
+</body>
+</html>
