@@ -1,4 +1,9 @@
 function Container({children}) {
+
+    function getCursos() {
+        alert('Fetch a la API');
+    }
+
     return (
 
         <div>
@@ -8,6 +13,7 @@ function Container({children}) {
                 <option value="2">Backend</option>
                 <option value="3">Diseño</option>
             </select>
+            <button onClick={() => getCursos()} type="button">Buscar</button>
             <hr></hr>
             <div className="container">
                 {children}

@@ -9,6 +9,7 @@ import Card from './components/Card.jsx'
 import Container from './components/Container.jsx'
 import Logo from './components/Logo.jsx'
 import Galeria from './components/Galeria.jsx'
+import { useState } from 'react'
 
 function App() {
 
@@ -24,7 +25,17 @@ function App() {
     { id: 4, nombre: 'CSS', descripcion: 'Layout con Flexbox'},
   ]
 
+  const [carrito, setCarrito] = useState([]);
+
   const imgs = [reactLogo, vueLogo, angularLogo, phpLogo];
+
+  function addToCart(data) {
+    setCarrito((carritoAnterior) => {
+      const nuevoCarrito = [...carritoAnterior, data];
+      console.log("🛒 Nuevo carrito:", nuevoCarrito);
+      return nuevoCarrito;
+    });
+  }
 
   return (
 
@@ -32,9 +43,13 @@ function App() {
       <Logo imgURL={reactLogo}></Logo>
       <Header titulo="Cursos"></Header>
 
+      <h4>🛒 {carrito.length}</h4>
+
       <main>
         <Container>
-          {cursos.map(curso => <Card key={curso.id} nombre={curso.nombre} descripcion={curso.descripcion}></Card>)}
+          {cursos.map(curso => 
+            <Card key={curso.id} id={curso.id} nombre={curso.nombre} descripcion={curso.descripcion} addToCart={addToCart}></Card>
+          )}
         </Container>
 
         <h2>Galería</h2>
